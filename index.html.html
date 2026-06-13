@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minh Đức Shop - Style For You</title>
+    
+    <!-- Favicon Logo -->
+    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/hGYCbKvX/z7931409618903-2f6144f82c8068f047acbd9b16e44774.jpg">
+    
+    <!-- Google Font Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --shopee: #EE4D2D; 
+            --hot: #ff4d4d;
+            --white: #ffffff; 
+            --gold: #d4a24c; 
+            --gold-light: #f7d483;
+        }
+
+        /* =========================
+           BODY LUXURY ULTIMATE
+        ========================= */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(212,162,76,0.18), transparent 18%),
+                radial-gradient(circle at 85% 80%, rgba(255,255,255,0.05), transparent 15%),
+                radial-gradient(circle at center, rgba(255,255,255,0.03), transparent 60%),
+                linear-gradient(145deg, #000000 0%, #050505 25%, #0a0a0a 55%, #121212 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Luxury noise texture */
+        body::before {
+            content: ""; position: fixed; inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 2px 2px; opacity: 0.35; pointer-events: none; z-index: -1;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a { text-decoration: none; transition: 0.3s; color: inherit; }
+
+        /* Header Glassmorphism */
+        header { 
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px); 
+            padding: 12px 20px; display: flex; align-items: center; justify-content: center; 
+            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .menu-toggle { position: absolute; left: 25px; font-size: 26px; cursor: pointer; background: none; border: none; color: var(--gold); }
+        .logo-img { height: 50px; width: auto; border-radius: 5px; }
+
+        /* Brand Hero - Ép 1 hàng */
+        .brand-hero{ padding: 160px 20px 100px; text-align: center; position: relative; width: 100%; overflow: hidden; }
+        .brand-name{
+            font-size: clamp(35px, 8.5vw, 150px); font-weight: 800;
+            letter-spacing: clamp(4px, 1.2vw, 18px); line-height: 1;
+            text-transform: uppercase; white-space: nowrap; 
+            background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 35%, #b8b8b8 60%, #5f5f5f 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 50px rgba(255,255,255,0.08); margin-bottom: 20px; display: block;
+        }
+        .brand-slogan{ color: #d4a24c; letter-spacing: 12px; font-size: 14px; text-transform: uppercase; opacity: 0.95; font-weight: 600; }
+
+        /* Products Section */
+        .products { padding: 60px 8%; position: relative; min-height: 60vh; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; }
+
+        /* Product Card Luxury */
+        .product-card{
+            position: relative;
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.07); border-radius: 32px;
+            overflow: hidden; backdrop-filter: blur(25px); transition: all .5s ease;
+            box-shadow: 0 25px 60px rgba(0,0,0,.45); isolation: isolate;
+            display: flex; flex-direction: column;
+        }
+        .product-card::before{
+            content:""; position:absolute; inset:0; border-radius:32px; padding:1px;
+            background: linear-gradient(135deg, rgba(255,255,255,.25), rgba(212,162,76,.55), rgba(255,255,255,.08));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude; opacity:.45; z-index: 3; pointer-events: none;
+        }
+        .product-card:hover{ transform: translateY(-16px) scale(1.025); box-shadow: 0 35px 80px rgba(212,162,76,.16); }
+        .product-card.hidden { display: none !important; }
+
+        /* Image Box */
+        .img-box{ padding: 22px; background: transparent; width: 100%; aspect-ratio: 1/1; overflow: hidden; position: relative; z-index: 2; }
+        .img-box img{ width: 100%; height: 100%; object-fit: cover; border-radius: 24px; transition: .7s ease; box-shadow: 0 15px 40px rgba(0,0,0,.35); }
+        .product-card:hover img{ transform: scale(1.08); }
+
+        .hot-badge { position: absolute; top: 25px; right: 25px; background: var(--hot); color: white; padding: 6px 14px; border-radius: 12px; font-size: 11px; font-weight: 800; z-index: 10; animation: pulse 1.5s infinite; box-shadow: 0 0 15px rgba(255, 77, 77, 0.6); }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        /* Product Info */
+        .product-info{ padding: 20px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; position: relative; z-index: 2; }
+        .product-info h3{ color: white; margin-bottom: 10px; font-size: 16px; font-weight: 500; height: 48px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5; }
+        .price{ color: #d4a24c; font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+        
+        /* =========================
+           BUY BUTTON (NEW UPDATE)
+        ========================= */
+        .buy-btn{
+            position:relative;
+            margin-top:20px;
+            padding:15px 28px;
+            border-radius:18px;
+            background: linear-gradient(135deg, #d4a24c, #f7d483);
+            color:black;
+            font-weight:800;
+            letter-spacing:1.5px;
+            overflow:hidden;
+            transition:.45s;
+            border: none;
+            display: inline-block;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        .buy-btn::before{
+            content:"";
+            position:absolute;
+            top:0;
+            left:-120%;
+            width:100%;
+            height:100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent);
+            transition:.8s;
+        }
+
+        .buy-btn:hover::before{
+            left:120%;
+        }
+
+        .buy-btn:hover{
+            transform: scale(1.06);
+            box-shadow: 0 0 40px rgba(212,162,76,.5);
+        }
+
+        /* Sidebar & Overlay */
+        #sidebar { position: fixed; top: 0; left: -300px; width: 300px; height: 100%; background: #0a0a0a; z-index: 2000; transition: 0.4s; border-right: 1px solid rgba(255,255,255,0.08); }
+        #sidebar.active { left: 0; }
+        .sidebar-header { padding: 30px 20px; background: #000; color: var(--gold); font-weight: 800; font-size: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .sidebar-item { padding: 18px 25px; border-bottom: 1px solid rgba(255,255,255,0.08); cursor: pointer; font-weight: 500; color: #bbb; }
+        .sidebar-item:hover { color: var(--gold); background: rgba(212, 162, 76, 0.05); }
+        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1500; display: none; backdrop-filter: blur(8px); }
+        #overlay.active { display: block; }
+
+        /* PREMIUM FOOTER */
+        .footer{
+            position: relative;
+            background: linear-gradient(135deg, #050505 0%, #111111 40%, #1a1a1a 100%);
+            color: white; padding: 80px 10% 35px; overflow: hidden;
+            border-top: 1px solid rgba(255,255,255,0.08); margin-top: 60px;
+        }
+        .footer .noise{ position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 4px 4px; opacity: 0.25; pointer-events: none; }
+        .footer-container{ position: relative; z-index: 2; display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 45px; }
+        .footer-box{ background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; padding: 25px; backdrop-filter: blur(10px); box-shadow: 0 0 25px rgba(212,162,76,0.05); transition: 0.35s; }
+        .footer-box:hover{ transform: translateY(-6px); border-color: rgba(212,162,76,0.25); box-shadow: 0 0 35px rgba(212,162,76,0.12); }
+        .footer-box h2{ color: var(--gold); font-size: 30px; margin-bottom: 14px; letter-spacing: 2px; }
+        .footer-box h3{ position: relative; margin-bottom: 22px; font-size: 18px; color: white; }
+        .footer-box h3::after{ content: ""; position: absolute; left: 0; bottom: -8px; width: 45px; height: 2px; background: linear-gradient(to right,var(--gold),transparent); }
+        .footer-box p, .footer-box li, .footer-box a{ color: #cfcfcf; line-height: 1.9; font-size: 15px; }
+        .socials{ display: flex; flex-direction: column; gap: 12px; }
+        .socials a:hover{ color: var(--gold); transform: translateX(6px); }
+        .footer-bottom{ position: relative; z-index: 2; margin-top: 55px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; }
+        .footer-bottom span{ color: var(--gold); font-weight: bold; letter-spacing: 1px; }
+
+        @media (max-width: 768px) {
+            .brand-hero { padding: 130px 15px 60px; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .footer { padding: 60px 7% 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <img src="https://i.postimg.cc/hGYCbKvX/z7931409618903-2f6144f82c8068f047acbd9b16e44774.jpg" alt="Logo" class="logo-img">
+    </header>
+
+    <section class="brand-hero">
+        <h1 class="brand-name">MINH ĐỨC SHOP</h1>
+        <p class="brand-slogan">STYLE FOR YOU</p>
+    </section>
+
+    <div id="overlay" onclick="toggleSidebar()"></div>
+    <div id="sidebar">
+        <div class="sidebar-header">DANH MỤC<span style="cursor:pointer" onclick="toggleSidebar()">×</span></div>
+        <ul id="sidebar-list"><li class="sidebar-item" onclick="filterData('all')">🏠 Tất cả deal hot</li></ul>
+    </div>
+
+    <section class="products">
+        <div id="loading" style="text-align:center; padding:50px; font-weight:bold; color:var(--gold);">🔄 ĐANG ĐỒNG BỘ DỮ LIỆU...</div>
+        <div class="grid" id="product-grid"></div>
+    </section>
+
+    <footer class="footer">
+        <div class="noise"></div>
+        <div class="footer-container">
+            <div class="footer-box">
+                <h2>MINH ĐỨC SHOP</h2>
+                <p>Tổng hợp các sản phẩm thời trang đẹp, giá tốt và đang được yêu thích trên Shopee. Chọn lọc kỹ trước khi giới thiệu đến khách hàng.</p>
+            </div>
+            <div class="footer-box">
+                <h3>CAM KẾT</h3>
+                <ul>
+                    <li>✔ Review sản phẩm khách quan</li>
+                    <li>✔ Ưu tiên shop uy tín & đánh giá cao</li>
+                    <li>✔ Cập nhật deal hot mỗi ngày</li>
+                    <li>✔ Giá tốt từ Shopee</li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h3>THÔNG TIN</h3>
+                <p>📩 minhducduong2406@gmail.com</p>
+                <p>📱 TikTok: <a href="https://www.tiktok.com/@mduc240609" target="_blank" style="color:#cfcfcf">@mduc240609</a></p>
+                <p>🛒 Affiliate Partner Shopee</p>
+            </div>
+            <div class="footer-box">
+                <h3>THEO DÕI</h3>
+                <div class="socials">
+                    <a href="https://www.facebook.com/minh.uc.43365" target="_blank">Facebook</a>
+                    <a href="https://www.tiktok.com/@mduc240609" target="_blank">TikTok</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 <span>MINH ĐỨC SHOP</span> - STYLE FOR YOU <br> Chia sẻ sản phẩm đẹp • Deal tốt • Mua sắm thông minh</p>
+        </div>
+    </footer>
+
+    <script>
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTSfjCVCxt7Cp5GqhN4wC5wg07VQNRuGW4d2zUtyMI4Hb03Vm7okSScD-2Ns37xLTEeE1t8wFfVybIB/pub?gid=0&single=true&output=csv';
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        async function init() {
+            try {
+                const response = await fetch(`${CSV_URL}&t=${new Date().getTime()}`);
+                const data = await response.text();
+                const rows = data.split('\n').slice(1);
+                const grid = document.getElementById('product-grid');
+                const sidebarList = document.getElementById('sidebar-list');
+                const loading = document.getElementById('loading');
+                let categories = new Set();
+                let html = '';
+
+                rows.forEach(row => {
+                    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    if (cols.length >= 6) {
+                        const cat = cols[0]?.replace(/^"|"$/g, '').trim();
+                        const name = cols[1]?.replace(/^"|"$/g, '').trim();
+                        const link = cols[2]?.replace(/^"|"$/g, '').trim();
+                        const img = cols[3]?.replace(/^"|"$/g, '').trim();
+                        const newP = cols[5]?.replace(/^"|"$/g, '').trim();
+                        const isHot = cols[6] && cols[6].trim().length > 0;
+
+                        if (name && img && img.includes('http')) {
+                            if (cat) categories.add(cat);
+                            html += `
+                                <div class="product-card" data-cat="${cat}">
+                                    ${isHot ? '<div class="hot-badge">DEAL HOT</div>' : ''}
+                                    <div class="img-box"><img src="${img}" alt="${name}" loading="lazy"></div>
+                                    <div class="product-info">
+                                        <h3>${name}</h3>
+                                        <div class="price">${newP}</div>
+                                        <a href="${link}" target="_blank" class="buy-btn">SĂN DEAL NGAY</a>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    }
+                });
+
+                categories.forEach(cat => {
+                    const li = document.createElement('li');
+                    li.className = 'sidebar-item';
+                    li.innerText = "📁 " + cat;
+                    li.onclick = function() { filterData(cat); toggleSidebar(); };
+                    sidebarList.appendChild(li);
+                });
+
+                loading.style.display = 'none';
+                grid.innerHTML = html;
+            } catch (e) {
+                document.getElementById('loading').innerText = "❌ Lỗi kết nối dữ liệu.";
+            }
+        }
+
+        function filterData(category) {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                const itemCat = card.getAttribute('data-cat');
+                if (category === 'all' || itemCat === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        init();
+    </script>
+</body>
+</html>
