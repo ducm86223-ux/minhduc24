@@ -10,23 +10,18 @@
     
     <style>
         :root { 
-            --gold: #d4a24c; 
-            --gold-light: #f7d483;
-            --hot: #ff4d4d;
+            --shopee: #EE4D2D; --hot: #ff4d4d; --white: #ffffff; 
+            --gold: #d4a24c; --gold-light: #f5cf7b;
         }
 
-        /* BODY LUXURY */
+        /* BODY LUXURY DARK THEME */
         body {
-            margin: 0; padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            color: white;
+            margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; color: white;
             background:
                 radial-gradient(circle at 15% 20%, rgba(212,162,76,0.18), transparent 18%),
                 radial-gradient(circle at 85% 80%, rgba(255,255,255,0.05), transparent 15%),
                 linear-gradient(145deg, #000000 0%, #050505 25%, #0a0a0a 55%, #121212 100%);
-            background-attachment: fixed;
-            overflow-x: hidden;
-            min-height: 100vh;
+            background-attachment: fixed; overflow-x: hidden; min-height: 100vh;
         }
 
         body::before {
@@ -43,88 +38,85 @@
             display: flex; align-items: center; justify-content: center; position: sticky; 
             top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.08);
         }
-        .menu-toggle { position: absolute; left: 15px; font-size: 24px; cursor: pointer; background: none; border: none; color: var(--gold); }
-        .logo-img { height: 40px; width: auto; border-radius: 5px; }
+        .menu-toggle { position: absolute; left: 20px; font-size: 24px; cursor: pointer; background: none; border: none; color: var(--gold); }
+        .logo-img { height: 45px; width: auto; border-radius: 5px; }
 
-        /* =========================
-           BRAND HERO (ĐÃ FIX LỖI MẤT CHỮ SHOP)
-        ========================= */
-        .brand-hero {
-            padding: 140px 10px 80px; /* Giảm lề ngang để chữ có thêm chỗ */
-            text-align: center;
-            position: relative;
-            width: 100%;
-            overflow: hidden;
+        /* BRAND HERO - Tỷ lệ cân bằng */
+        .brand-hero{
+            padding: clamp(100px, 15vh, 160px) 20px 80px;
+            text-align: center; position: relative;
         }
 
-        .brand-name {
-            font-size: clamp(40px, 10vw, 150px); 
-            font-weight: 900;
-            letter-spacing: 18px;
-            line-height: 1;
+        .brand-name{
+            /* Desktop: 110px | Mobile: 32px */
+            font-size: clamp(32px, 8vw, 110px); 
+            font-weight: 800;
+            letter-spacing: clamp(4px, 1.2vw, 18px);
+            line-height: 1.1;
             text-transform: uppercase;
-            white-space: nowrap;
             background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 35%, #b8b8b8 60%, #5f5f5f 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 50px rgba(255,255,255,0.08);
             margin-bottom: 20px;
             display: block;
+            white-space: nowrap;
         }
 
-        .brand-slogan {
-            color: #d4a24c;
-            letter-spacing: 12px;
-            font-size: 14px;
-            text-transform: uppercase;
-            opacity: 0.95;
-            font-weight: 600;
+        .brand-slogan{
+            color: #d4a24c; letter-spacing: clamp(4px, 0.8vw, 12px);
+            font-size: clamp(10px, 1.2vw, 14px);
+            text-transform: uppercase; opacity: 0.95; font-weight: 600;
         }
 
-        /* PRODUCTS GRID */
-        .products { padding: 40px 8%; position: relative; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; }
+        /* PRODUCTS GRID - Tỷ lệ Mobile 2 cột */
+        .products { padding: 40px 8%; position: relative; min-height: 60vh; }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 35px; 
+        }
 
-        .product-card {
+        .product-card{
             position: relative;
             background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
             border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 32px;
-            overflow: hidden;
-            backdrop-filter: blur(25px);
-            transition: all .5s ease;
-            box-shadow: 0 25px 60px rgba(0,0,0,.45);
+            border-radius: 28px; overflow: hidden; backdrop-filter: blur(25px);
+            transition: all .5s ease; box-shadow: 0 25px 60px rgba(0,0,0,.45);
             display: flex; flex-direction: column;
         }
-        .product-card::before {
-            content:""; position:absolute; inset:0; border-radius:32px; padding:1px;
+        .product-card::before{
+            content:""; position:absolute; inset:0; border-radius:28px; padding:1px;
             background: linear-gradient(135deg, rgba(255,255,255,.25), rgba(212,162,76,.55), rgba(255,255,255,.08));
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude; opacity:.45; z-index: 3; pointer-events: none;
         }
-        .product-card:hover { transform: translateY(-16px) scale(1.025); }
+        .product-card:hover{ transform: translateY(-12px) scale(1.02); }
 
-        .img-box { padding: 22px; background: transparent; width: 100%; aspect-ratio: 1/1; overflow: hidden; position: relative; z-index: 2; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; transition: .7s ease; box-shadow: 0 15px 40px rgba(0,0,0,.35); }
-        .product-card:hover img { transform: scale(1.08); }
+        .img-box{ padding: 18px; background: transparent; width: 100%; aspect-ratio: 1/1; overflow: hidden; position: relative; z-index: 2; }
+        .img-box img{ width: 100%; height: 100%; object-fit: cover; border-radius: 20px; transition: .7s ease; box-shadow: 0 15px 40px rgba(0,0,0,.35); }
+        .product-card:hover img{ transform: scale(1.06); }
 
-        .product-info { padding: 20px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; position: relative; z-index: 2; }
-        .product-info h3 { color: white; margin-bottom: 10px; font-size: 16px; font-weight: 500; height: 48px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5; }
-        .price { color: #d4a24c; font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+        .hot-badge { 
+            position: absolute; top: 20px; right: 20px; background: var(--hot); color: white; 
+            padding: 5px 12px; border-radius: 10px; font-size: 10px; font-weight: 800; 
+            z-index: 10; animation: pulse 1.5s infinite; 
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        .product-info{ padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
+        .product-info h3{ color: white; margin-bottom: 8px; font-size: 14px; font-weight: 500; height: 42px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5; }
+        .price{ color: #d4a24c; font-size: 20px; font-weight: 800; margin-bottom: 10px; }
         
-        .buy-btn {
-            position:relative; margin-top:20px; padding:15px 28px; border-radius:18px;
+        .buy-btn{
+            position:relative; margin-top:10px; padding: 12px 20px; border-radius:14px;
             background: linear-gradient(135deg, #d4a24c, #f7d483);
-            color:black; font-weight:800; letter-spacing:1.5px; overflow:hidden;
-            transition:.45s; display: inline-block; cursor: pointer; border: none; font-size: 13px; text-transform: uppercase;
+            color:black; font-weight:800; letter-spacing:1px; overflow:hidden;
+            transition:.45s; display: inline-block; cursor: pointer; border: none; font-size: 11px; text-transform: uppercase;
         }
-        .buy-btn::before {
-            content:""; position:absolute; top:0; left:-120%; width:100%; height:100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent);
-            transition:.8s;
-        }
-        .buy-btn:hover::before { left:120%; }
-        .buy-btn:hover { transform: scale(1.06); box-shadow: 0 0 40px rgba(212,162,76,0.5); }
+        .buy-btn::before{ content:""; position:absolute; top:0; left:-120%; width:100%; height:100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent); transition:.8s; }
+        .buy-btn:hover::before{ left:120%; }
+        .buy-btn:hover{ transform: scale(1.05); box-shadow: 0 0 30px rgba(212,162,76,0.5); }
 
         #sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background: #0a0a0a; z-index: 2000; transition: 0.4s; border-right: 1px solid rgba(255,255,255,0.08); }
         #sidebar.active { left: 0; }
@@ -133,30 +125,35 @@
         #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1500; display: none; backdrop-filter: blur(8px); }
         #overlay.active { display: block; }
 
-        /* FOOTER */
-        .footer { position: relative; background: linear-gradient(135deg, #050505 0%, #111111 40%, #1a1a1a 100%); color: white; padding: 60px 10% 35px; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 50px; }
-        .footer .noise { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 4px 4px; opacity: 0.25; pointer-events: none; }
-        .footer-container { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 40px; }
-        .footer-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; padding: 22px; backdrop-filter: blur(10px); }
-        .footer-box h2 { color: var(--gold); font-size: 26px; margin-bottom: 12px; letter-spacing: 1px; }
-        .footer-box h3 { position: relative; margin-bottom: 20px; font-size: 16px; color: white; }
-        .footer-box h3::after { content: ""; position: absolute; left: 0; bottom: -8px; width: 40px; height: 2px; background: linear-gradient(to right,var(--gold),transparent); }
-        .footer-box p, .footer-box li, .footer-box a { color: #cfcfcf; line-height: 1.8; font-size: 14px; }
-        .socials { display: flex; flex-direction: column; gap: 10px; }
-        .socials a:hover { color: var(--gold); transform: translateX(5px); }
-        .footer-bottom { position: relative; z-index: 2; margin-top: 40px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; }
-        .footer-bottom span { color: var(--gold); font-weight: bold; }
+        /* PREMIUM FOOTER */
+        .footer{
+            position: relative; background: linear-gradient(135deg, #050505 0%, #111111 40%, #1a1a1a 100%);
+            color: white; padding: 60px 8% 30px; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 60px;
+        }
+        .footer .noise{ position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 4px 4px; opacity: 0.25; pointer-events: none; }
+        .footer-container{ position: relative; z-index: 2; display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 30px; }
+        .footer-box{ background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; padding: 20px; }
+        .footer-box h2{ color: var(--gold); font-size: 24px; margin-bottom: 12px; }
+        .footer-box h3{ position: relative; margin-bottom: 18px; font-size: 16px; color: white; }
+        .footer-box h3::after{ content: ""; position: absolute; left: 0; bottom: -6px; width: 35px; height: 2px; background: var(--gold); }
+        .footer-box p, .footer-box li, .footer-box a{ color: #aaa; line-height: 1.8; font-size: 14px; }
+        .socials{ display: flex; flex-direction: column; gap: 8px; }
+        .socials a:hover{ color: var(--gold); transform: translateX(5px); }
+        .footer-bottom{ position: relative; z-index: 2; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; font-size: 13px; }
 
-        /* =========================
-           CÀI ĐẶT RIÊNG CHO MOBILE (KHÔNG MẤT CHỮ SHOP)
-        ========================= */
+        /* RESPONSIVE MOBILE OPTIMIZATION */
         @media (max-width: 768px) {
-            .brand-hero { padding: 120px 5px 60px; }
-            /* Cỡ chữ 18px và letter-spacing cực nhỏ để không bị tràn */
-            .brand-name { font-size: 18px !important; letter-spacing: 1.5px !important; }
-            .brand-slogan { letter-spacing: 3px; font-size: 9px; }
+            .brand-hero { padding: 110px 10px 50px; }
+            .brand-name { font-size: 32px; letter-spacing: 4px; }
+            .brand-slogan { letter-spacing: 5px; font-size: 10px; }
+            /* Mobile 2 cột sản phẩm */
             .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .products { padding: 20px 3%; }
+            .img-box { padding: 10px; }
+            .product-info { padding: 12px; }
+            .price { font-size: 17px; }
+            .buy-btn { padding: 10px 15px; font-size: 10px; }
+            .footer { padding: 40px 5% 20px; }
         }
     </style>
 </head>
@@ -179,7 +176,7 @@
     </div>
 
     <section class="products">
-        <div id="loading" style="text-align:center; padding:50px; font-weight:bold; color:var(--gold);">🔄 ĐANG TẢI...</div>
+        <div id="loading" style="text-align:center; padding:50px; font-weight:bold; color:var(--gold);">🔄 ĐANG ĐỒNG BỘ DỮ LIỆU...</div>
         <div class="grid" id="product-grid"></div>
     </section>
 
@@ -193,7 +190,7 @@
             <div class="footer-box">
                 <h3>CAM KẾT</h3>
                 <ul>
-                    <li>✔ Shop uy tín & đánh giá cao</li>
+                    <li>✔ Ưu tiên shop uy tín</li>
                     <li>✔ Cập nhật deal hot mỗi ngày</li>
                     <li>✔ Giá tốt nhất từ Shopee</li>
                 </ul>
